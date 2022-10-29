@@ -18,11 +18,15 @@ ja:
       title: "タスク編集画面"
     link:
       back: "戻る"
+    form:
+      count: "件のエラーがあります。"
+      to_index: "タスク一覧へ"
   activerecord:
     models:
       task: "タスク"
     errors:
       messages:
+        count: "件のエラーがあります"
         record_invalid: 'バリデーションに失敗しました: %{errors}'
         restrict_dependent_destroy:
           has_one: "%{record}が存在しているので削除できません"
