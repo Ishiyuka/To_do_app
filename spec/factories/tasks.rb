@@ -8,4 +8,9 @@ FactoryBot.define do
     # detail { 'test_detail' }
     detail { 'Factoryで作ったデフォルトの詳細1' }
   end
+
+  factory :second_task, class: Task do
+    list { 'Factoryで作ったデフォルトのタスク2' }
+    detail { 'Factoryで作ったデフォルトの詳細2' }
+  end
 end

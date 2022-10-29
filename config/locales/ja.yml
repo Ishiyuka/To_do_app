@@ -1,12 +1,60 @@
 ---
 ja:
+  tasks:
+    index:
+      title: "タスク一覧"
+      list: "タスク"
+      detail: "詳細"
+      to_show: "詳細へ"
+      to_edit: "編集へ"
+      to_destroy: "削除する"
+      to_new: "新規作成へ"
+      to_index: "タスク一覧へ"
+    new:
+      title: "タスク新規作成"
+    show:
+      title: "タスク詳細画面"
+    edit:
+      title: "タスク編集画面"
+    link:
+      back: "戻る"
   activerecord:
+    models:
+      task: "タスク"
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'
         restrict_dependent_destroy:
           has_one: "%{record}が存在しているので削除できません"
           has_many: "%{record}が存在しているので削除できません"
+  helpers:
+    submit:
+      create: "%{model}を登録する"
+      update: "%{model}を更新する"
+      account:
+        create: "保存する"
+      login_form:
+        create: "ログインする"
+    select:
+      prompt: "選択してください。"
+    links:
+      show: "詳細"
+      back: "戻る"
+      destroy: "削除"
+      edit: "編集"
+      new: "新規作成"
+      cancel: "キャンセル"
+  flash:
+    new: 作成しました！
+    updated: 更新しました！
+    failed: 失敗しました！
+    destroy: 削除しました！
+    login: ログインしました！
+    logout: ログアウトしました！
+    limited_access: 不正な侵入です！！
+    tag_follow: タグをフォローしました！
+    tag_not_follow: タグをフォローできませんでした。
+    tag_remove_follow: タグのフォローを解除しました！
   date:
     abbr_day_names:
     - 日
@@ -17,7 +65,7 @@ ja:
     - 金
     - 土
     abbr_month_names:
-    - 
+    -
     - 1月
     - 2月
     - 3月
@@ -43,7 +91,7 @@ ja:
       long: "%Y年%m月%d日(%a)"
       short: "%m/%d"
     month_names:
-    - 
+    -
     - 1月
     - 2月
     - 3月
@@ -85,6 +133,7 @@ ja:
   errors:
     format: "%{attribute}%{message}"
     messages:
+      can't be blank: は入力必須項目です。
       accepted: を受諾してください
       blank: を入力してください
       confirmation: と%{attribute}の入力が一致しません

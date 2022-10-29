@@ -1,6 +1,13 @@
-<h1>タスク詳細画面</h1>
-<p>タスク: <%= @task.list %></p>
-<p>詳細: <%= @task.detail %></p>
+<h1><%= t('tasks.show.title') %> </h1>
 
-<%= link_to '編集', edit_task_path %> |
-<%= link_to '戻る', tasks_path %>
+<p>
+  <%= t('tasks.index.list') %>
+  <%= @task.list %>
+</p>
+<p>
+  <%= t('tasks.index.detail') %>
+  <%= @task.detail %>
+</p>
+
+<%= link_to t('tasks.index.to_edit'), edit_task_path(@task.id) %> |
+<%= link_to t('tasks.link.back'), tasks_path %>
