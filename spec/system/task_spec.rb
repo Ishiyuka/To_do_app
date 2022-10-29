@@ -17,7 +17,7 @@ end
   end
 
   describe '一覧表示機能' do
-    let!(:task) { FactoryBot.create(:task, list: '掃除', detail:'床') }
+    let!(:task) { FactoryBot.create(:task, list: '掃除', detail: '床') }
     before do
       visit tasks_path
     end
