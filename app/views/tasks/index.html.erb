@@ -1,22 +1,24 @@
-<h1>タスク一覧</h1>
+<h2><%= t (".title") %></h2>
 <p><%= flash[:notice] %>
-<%= alert %>
+<%= alert %></p>
 
 <table>
 <tr>
-<td>リスト</td>
-<td>詳細</td>
+<td><%= t('.list') %></td>
+<td><%= t('tasks.index.detail') %></td>
 </tr>
+
 <% @tasks.each do |task| %>
   <tr>
     <td><%= task.list %></td>
     <td><%= task.detail %></td>
-    <td><%= link_to '詳細', task_path(task.id) %></td>
-    <td><%= link_to '編集', edit_task_path(task.id) %></td>
-    <td><%= link_to '削除', task_path(task.id), method: :delete %></td>
+    <td><%= task.created_at.to_s(:datetime_jp) %></td>
+    <td><%= link_to t('.to_show'), task_path(task.id) %></td>
+    <td><%= link_to t('.to_edit'), edit_task_path(task.id) %></td>
+    <td><%= link_to t('.to_destroy'), task_path(task.id), method: :delete %></td>
 
   </tr>
 <% end %>
 </table>
 
-<%= link_to '新たなタスクを作成する', new_task_path %>
+<%= link_to t('.to_new'), new_task_path %>

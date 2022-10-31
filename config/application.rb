@@ -20,5 +20,8 @@ module ToDoApp
                         controller_specs: false,
                         request_specs: false
     end
+    config.time_zone = 'Tokyo'
+    config.active_record.default_timezone = :local
+    # config.I18n.default_locale = :ja
   end
 end
