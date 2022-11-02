@@ -2,7 +2,7 @@
 ja:
   tasks:
     index:
-      display: "タスク一覧"
+      title: "タスク一覧"
       list: "タスク"
       detail: "詳細"
       to_show: "詳細へ"
@@ -11,9 +11,7 @@ ja:
       to_new: "新規作成へ"
       to_index: "タスク一覧へ"
       created_at: "作成日時"
-      deadline: "修了期限"
       status: "ステータス"
-      priority: "優先順位"
     new:
       title: "タスク新規作成"
     show:

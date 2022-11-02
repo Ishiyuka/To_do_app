@@ -2,25 +2,33 @@ class TasksController < ApplicationController
   before_action :set_task, only: %I[ show edit update destroy]
 
   def index
-    @tasks = Task.all
-    if params[:task_search].present?
-      list = params[:task_search][:list]
-      status = params[:task_search][:status]
-      if (list && status).present?
-        @tasks = @tasks.search_list_status(list, status)
-      elsif list.present?
-        @tasks = @tasks.search_list(list)
+    if params[:task].present?
+      title = params[:task][:titile]
+      status = params[:task][:status]
+      if (title && status).present?
+        @tasks = Task.title_status(title, status)
+      elsif title.present?
+        @tasks = Task.search_title(title)
       elsif status.present?
-        @tasks = @tasks.search_status(status)
+        @tasks = Task.search_status(status)
       end
-    elsif params[:sort_deadline]
-      @tasks = @tasks.order(deadline: :desc)
-    elsif params[:sort_priority]
-      @tasks = @tasks.order(priority: :asc)
+    elsif params[:sort_deadline].present?
+      @tasks = Task.deadline_list
+    elsif params[:sort_priority].present?
+      @tasks = Task.priority_list
+    # elsif
+      # @tasks = Task.all.order(created_at: "DESC")
     else
-      @tasks = @tasks.order(created_at: :desc)
+      @tasks = Task.page(prams[:page]).per(5)
     end
   end
+
+  scope :created_list, ->{order(created_at: :desc)}
+  scope :deadline_list, ->{order(deadline: :desc)}
+  scope :priority_list, ->{order(priority: :asc)}
+  scope :title_status, ->(title,status) { where("title LIKE ? ", "%#{title}%").where(status:status) }
+  scope :search_title, ->(title) { where("title LIKE(?) ", "%#{title}%") }
+  scope :search_status,
 
   def new
     if params[:back]

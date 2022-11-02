@@ -2,14 +2,14 @@ class TasksController < ApplicationController
   before_action :set_task, only: %I[ show edit update destroy]
 
   def index
-    @tasks = Task.all
     if params[:task_search].present?
-      list = params[:task_search][:list]
+      title = params[:task_search][:titile]
       status = params[:task_search][:status]
-      if (list && status).present?
-        @tasks = @tasks.search_list_status(list, status)
-      elsif list.present?
-        @tasks = @tasks.search_list(list)
+      @tasks = Task.all
+      if (title && status).present?
+        @tasks = @tasks.search_title_status(title, status)
+      elsif title.present?
+        @tasks = @tasks.search_title(title)
       elsif status.present?
         @tasks = @tasks.search_status(status)
       end

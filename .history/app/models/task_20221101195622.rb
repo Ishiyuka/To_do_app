@@ -8,7 +8,7 @@ class Task < ApplicationRecord
   scope :created_list, ->{order(created_at: :desc)}
   scope :deadline_list, ->{order(deadline: :desc)}
   scope :priority_list, ->{order(priority: :asc)}
-  scope :search_list_status, ->(list,status) { where("list LIKE ? ", "%#{list}%").where(status:status) }
-  scope :search_list, ->(list) { where("list LIKE(?) ", "%#{list}%") }
-  scope :search_status, ->(status) {where(status:status)}
+  scope :title_status, ->(title,status) { where("title LIKE ? ", "%#{title}%").where(status:status) }
+  scope :title_search, ->(title) { where("title LIKE(?) ", "%#{title}%") }
+  scope :status_search, ->(status) {where(status:status)}
 end

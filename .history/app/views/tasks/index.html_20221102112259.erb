@@ -1,4 +1,4 @@
-<h2><%= t (".display") %></h2>
+<h2><%= t (".title") %></h2>
 <p><%= flash[:notice] %><%= alert %></p>
 
 <%= form_with(url: tasks_path, scope: :task_search, local: true, method: :get) do |form| %>

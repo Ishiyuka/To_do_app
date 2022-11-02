@@ -4,13 +4,17 @@ class TasksController < ApplicationController
   def index
     @tasks = Task.all
     if params[:task_search].present?
+      byebug
       list = params[:task_search][:list]
       status = params[:task_search][:status]
       if (list && status).present?
+        byebug
         @tasks = @tasks.search_list_status(list, status)
       elsif list.present?
+        byebug
         @tasks = @tasks.search_list(list)
       elsif status.present?
+        byebug
         @tasks = @tasks.search_status(status)
       end
     elsif params[:sort_deadline]

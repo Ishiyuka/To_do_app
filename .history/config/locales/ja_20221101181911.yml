@@ -2,7 +2,7 @@
 ja:
   tasks:
     index:
-      display: "タスク一覧"
+      title: "タスク一覧"
       list: "タスク"
       detail: "詳細"
       to_show: "詳細へ"

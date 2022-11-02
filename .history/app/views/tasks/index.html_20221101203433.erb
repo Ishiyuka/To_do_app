@@ -1,13 +1,20 @@
-<h2><%= t (".display") %></h2>
+<h2><%= t (".title") %></h2>
 <p><%= flash[:notice] %><%= alert %></p>
 
-<%= form_with(url: tasks_path, scope: :task_search, local: true, method: :get) do |form| %>
+<%= form_with(url: tasks_path, scope: :task, local: true, method: :get) do |form| %>
   <div class = "form-row">
-      <%= form.text_field :list, placeholder:"タイトル検索", type: "text" %>
+    <span class = "form-group col-md-4">
+      <%= form.text_field :title, placeholder:"タイトル検索", type: "text" %>
+    </span>
+    <span class = "form-group col-md-3">
       <%= form.select :status, Task.statuses.keys.to_a, {include_blank: true} %>
-      <%= form.submit "検索"%>
+    </span>
+    <span>
+      <%= form.submit "検索", class:"btn-secondary" %>
+    </span>
+
     <button type="button" >
-      <%= link_to "終了期限でソートする", tasks_path(sort_deadline: "true") %>
+      <%= link_to "終了期限でソートする", tasks_path(sort_expired: "true") %>
     </button>
     <button type="button" >
       <%= link_to "優先度でソートする", tasks_path(sort_priority: "true") %>
@@ -42,4 +49,3 @@
 </table>
 
 <%= link_to t('.to_new'), new_task_path %>
-<%= link_to t('.to_index'), tasks_path %>

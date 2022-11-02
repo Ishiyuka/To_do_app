@@ -1,24 +1,17 @@
 class TasksController < ApplicationController
   before_action :set_task, only: %I[ show edit update destroy]
 
+  def search
+    @products = Product.where('title LIKE(?)', "%#{params[:keyword]}%").limit(20)
+  end
+
   def index
-    @tasks = Task.all
-    if params[:task_search].present?
-      list = params[:task_search][:list]
-      status = params[:task_search][:status]
-      if (list && status).present?
-        @tasks = @tasks.search_list_status(list, status)
-      elsif list.present?
-        @tasks = @tasks.search_list(list)
-      elsif status.present?
-        @tasks = @tasks.search_status(status)
-      end
-    elsif params[:sort_deadline]
-      @tasks = @tasks.order(deadline: :desc)
-    elsif params[:sort_priority]
-      @tasks = @tasks.order(priority: :asc)
-    else
-      @tasks = @tasks.order(created_at: :desc)
+    @tasks = Task.all.order(created_at: "DESC")
+    @tasks = Task.all.order(priority: "ASC") if params[:sort_priority]
+    @tasks = Task.all.order(deadline: "ASC") if params[:sort_deadline]
+    if @tasks = Task.where(" title LIKE ? AND STATUS LIKE ? ",'%%')
+      モデルクラス.where( "列名 LIKE ? AND 列名 LIKE ? ", "条件1", "条件2")
+
     end
   end
 
