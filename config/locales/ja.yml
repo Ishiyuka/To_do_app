@@ -2,7 +2,7 @@
 ja:
   tasks:
     index:
-      title: "タスク一覧"
+      display: "タスク一覧"
       list: "タスク"
       detail: "詳細"
       to_show: "詳細へ"
@@ -10,6 +10,10 @@ ja:
       to_destroy: "削除する"
       to_new: "新規作成へ"
       to_index: "タスク一覧へ"
+      created_at: "作成日時"
+      deadline: "終了期限"
+      status: "ステータス"
+      priority: "優先順位"
     new:
       title: "タスク新規作成"
     show:
@@ -21,6 +25,23 @@ ja:
     form:
       count: "件のエラーがあります。"
       to_index: "タスク一覧へ"
+  views:
+    pagination:
+      first: "&laquo; 最初"
+      last: "最後 &raquo;"
+      previous: "&lsaquo; 前"
+      next: "次 &rsaquo;"
+      truncate: "..."
+  # enums:
+  #   task:
+  #     status:
+  #       notyet: "未着手"
+  #       ongoing: "着手中"
+  #       done: "完了"
+  #     priority: "プライオリティ"
+  #       high: "高"
+  #       middle: "中"
+  #       low: "低"
   activerecord:
     models:
       task: "タスク"
@@ -228,7 +249,7 @@ ja:
   time:
     am: 午前
     formats:
-      default: "%Y年%m月%d日(%a) %H時%M分%S秒 %z"
+      default: "%Y/%m/%d %H:%M:%S"
       long: "%Y/%m/%d %H:%M"
       short: "%m/%d %H:%M"
     pm: 午後

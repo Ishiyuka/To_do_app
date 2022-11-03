@@ -17,7 +17,22 @@
   </div>
   <div class="field">
     <%= form.label :detail %><br>
-    <%= form.text_field :detail %>
+    <%= form.text_area :detail %>
+  </div>
+
+  <div class="field">
+    <%= form.label :deadline %>
+    <%= form.date_field :deadline %>
+  </div>
+
+    <div class="field">
+    <%= form.label :status %>
+    <%= form.select :status, Task.statuses.keys.to_a,include_blank: "選択して下さい"  %>
+  </div>
+
+    <div class="field">
+    <%= form.label :priority %>
+    <%= form.select :priority, Task.priorities.keys.to_a,include_blank: "選択して下さい"  %>
   </div>
 
   <div class="actions">

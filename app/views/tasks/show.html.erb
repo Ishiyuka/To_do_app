@@ -9,5 +9,20 @@
   <%= @task.detail %>
 </p>
 
+<p>
+  <%= t('tasks.index.deadline') %>
+  <%= @task.deadline %>
+</p>
+
+<p>
+  <%= t('tasks.index.status') %>
+  <%= @task.status %>
+</p>
+
+<p>
+  <%= t('tasks.index.priority') %>
+  <%= @task.priority %>
+</p>
+
 <%= link_to t('tasks.index.to_edit'), edit_task_path(@task.id) %> |
 <%= link_to t('tasks.link.back'), tasks_path %>

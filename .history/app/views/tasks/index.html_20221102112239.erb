@@ -1,0 +1,45 @@
+<h2><%= t (".title") %></h2>
+<p><%= flash[:notice] %><%= alert %></p>
+
+<%= form_with(url: tasks_path, scope: :task_search, local: true, method: :get) do |form| %>
+  <div class = "form-row">
+      <%= form.text_field :list, placeholder:"タイトル検索", type: "text" %>
+      <%= form.select :status, Task.statuses.keys.to_a, {include_blank: true} %>
+      <%= form.submit "検索"%>
+    <button type="button" >
+      <%= link_to "終了期限でソートする", tasks_path(sort_deadline: "true") %>
+    </button>
+    <button type="button" >
+      <%= link_to "優先度でソートする", tasks_path(sort_priority: "true") %>
+    </button>
+  </div>
+<% end %>
+
+<table>
+<tr>
+<th><%= t('.list') %></th>
+<th><%= t('.detail') %></th>
+<th><%= link_to t('.created_at'), tasks_path(sort_created_at: "true") %></th>
+<th><%= link_to t('.deadline'), tasks_path(sort_deadline: "true") %></th>
+<th><%= t('.status')%></th>
+<th><%= link_to t('.priority'), tasks_path(sort_priority: "true") %></th>
+</tr>
+
+<% @tasks.each do |task| %>
+  <tr>
+    <td><%= task.list %></td>
+    <td><%= task.detail %></td>
+    <td><%= task.created_at %></td>
+    <td><%= task.deadline %></td>
+    <td><%= task.status %></td>
+    <td><%= task.priority %></td>
+    <td><%= link_to t('.to_show'), task_path(task.id) %></td>
+    <td><%= link_to t('.to_edit'), edit_task_path(task.id) %></td>
+    <td><%= link_to t('.to_destroy'), task_path(task.id), method: :delete %></td>
+
+  </tr>
+<% end %>
+</table>
+
+<%= link_to t('.to_new'), new_task_path %>
+<%= link_to t('.to_index'), tasks_path %>

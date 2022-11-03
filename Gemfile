@@ -34,3 +34,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'net-smtp'
 gem 'net-imap'
 gem 'net-pop'
+
+gem 'bootstrap', '~> 4.4.1'
+gem 'jquery-rails'
+gem 'kaminari'
