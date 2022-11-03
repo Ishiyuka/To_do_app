@@ -37,6 +37,12 @@
   </tr>
 <% end %>
 </table>
-
+<%= paginate @tasks%>
 <%= link_to t('.to_new'), new_task_path %>
 <%= link_to t('.to_index'), tasks_path %>
+
+<style>
+.btn a{
+  color:black;
+}
+</style>

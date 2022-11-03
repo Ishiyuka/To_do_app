@@ -2,23 +2,23 @@ class TasksController < ApplicationController
   before_action :set_task, only: %I[ show edit update destroy]
 
   def index
-    @tasks = Task.all
+    @tasks = Task.all.page(params[:page])
     if params[:task_search].present?
       list = params[:task_search][:list]
       status = params[:task_search][:status]
       if (list && status).present?
-        @tasks = @tasks.search_list_status(list, status)
+        @tasks = @tasks.page(params[:page]).search_list_status(list, status)
       elsif list.present?
-        @tasks = @tasks.search_list(list)
+        @tasks = @tasks.page(params[:page]).search_list(list)
       elsif status.present?
-        @tasks = @tasks.search_status(status)
+        @tasks = @tasks.page(params[:page]).search_status(status)
       end
     elsif params[:sort_deadline]
-      @tasks = @tasks.order(deadline: :desc)
+      @tasks = @tasks.page(params[:page]).deadline_list
     elsif params[:sort_priority]
-      @tasks = @tasks.order(priority: :asc)
-    else
-      @tasks = @tasks.order(created_at: :desc)
+      @tasks = @tasks.page(params[:page]).priority_list
+    else params[:sort_created_at]
+      @tasks = @tasks.page(params[:page]).created_list
     end
   end
 
