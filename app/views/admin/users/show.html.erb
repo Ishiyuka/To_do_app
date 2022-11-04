@@ -1,0 +1,42 @@
+<h1>ユーザーの詳細</h1>
+
+<ul class="nav justify-content-end">
+  <li class="nav-item">
+    <a class="nav-link" href="#"><%= link_to "新規登録", admin_users_path%></a>
+  </li>
+</ul>
+
+<table class = "table-hover">
+  <tbody>
+    <tr>
+      <th><%= User.human_attribute_name(:id) %></th>
+      <td><%= @user.id %></td>
+    </tr>
+    <tr>
+      <th><%= User.human_attribute_name(:name) %></th>
+      <td><%= @user.name %></td>
+    </tr>
+    <tr>
+      <th><%= User.human_attribute_name(:email) %></th>
+      <td><%= @user.email %></td>
+    </tr>
+    <tr>
+      <th><%= User.human_attribute_name(:admin) %></th>
+      <td><%= user.admin? ? 'あり' : 'なし' %></td>
+    </tr>
+    <tr>
+      <th><%= User.human_attribute_name(:created_at) %></th>
+      <td><%= user.created_at %></td>
+    </tr>
+    <tr>
+      <th><%= User.human_attribute_name(:updated_at) %></th>
+      <td><%= user.updated_at %></td>
+    </tr>
+  </tbody>
+</table>
+
+<button type="button" class="btn btn-primary mr-3">
+<%= link_to "編集", edit_admin_user_path(user)%></button>
+<button type="button" class= 'btn btn-danger'>
+<%= link_to "削除", [:admin, @user], method: :delete,
+                    data: { confirm: "ユーザー「#{@user.name}」を削除します。よろしいですか？"}%></button>
