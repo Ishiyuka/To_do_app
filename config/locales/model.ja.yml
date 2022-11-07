@@ -22,3 +22,4 @@ ja:
         remember_me: ログインを記憶
         created_at: 作成日
         updated_at: 更新日
+      admin: 管理者権限
