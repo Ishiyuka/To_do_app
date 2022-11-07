@@ -1,5 +1,8 @@
 class SessionsController < ApplicationController
-  skip_before_action :login_required, only: %I[ new create ]
+  skip_before_action :login_required, only: %I[ new create destroy]
+  skip_before_action :already_logged_in, only: %I[ new create destroy]
+  skip_before_action :no_access_to_others, only: %I[ new create destroy]
+  skip_before_action :if_not_admin, only: %I[ new create destroy]
   def new
   end
 

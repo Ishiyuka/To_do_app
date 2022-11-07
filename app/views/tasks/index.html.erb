@@ -1,5 +1,5 @@
 <h2><%= t (".display") %></h2>
-<p><%= flash[:notice] %><%= alert %></p>
+<%# <p><%= flash[:notice] %><%= alert %></p>
 
 <%= form_with(url: tasks_path, scope: :task_search, local: true, method: :get) do |form| %>
   <div class = "form-row">
@@ -13,6 +13,7 @@
 
 <table>
 <tr>
+<th><%= t('.user_name') %></th>
 <th><%= t('.list') %></th>
 <th><%= t('.detail') %></th>
 <th><%= link_to t('.created_at'), tasks_path(sort_created_at: "true") %></th>
@@ -23,6 +24,7 @@
 
 <% @tasks.each do |task| %>
   <tr class = "task_table">
+    <td><%= task.user.name %></td>
     <td><%= task.list %></td>
     <td><%= task.detail %></td>
     <td><%= task.created_at %></td>
@@ -40,9 +42,3 @@
 <%= paginate @tasks%>
 <%= link_to t('.to_new'), new_task_path %>
 <%= link_to t('.to_index'), tasks_path %>
-
-<style>
-.btn a{
-  color:black;
-}
-</style>

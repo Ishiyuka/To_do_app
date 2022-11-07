@@ -1,6 +1,10 @@
 class TasksController < ApplicationController
   before_action :set_task, only: %I[ show edit update destroy]
-  skip_before_action :login_required, only: [:new, :create]
+  skip_before_action :login_required, only: %I[ new create]
+  skip_before_action :already_logged_in, only: %I[ index new create update show edit destroy ]
+  skip_before_action :no_access_to_others, only: %I[ index new create update show edit destroy]
+  skip_before_action :if_not_admin, only: %I[ index new create update show edit destroy]
+
 
   def index
     @tasks = current_user.tasks.page(params[:page])

@@ -14,6 +14,7 @@ ja:
       deadline: "終了期限"
       status: "ステータス"
       priority: "優先順位"
+      user_name: "ユーザー"
     new:
       title: "タスク新規作成"
     show:
