@@ -1,3 +1,26 @@
-<h1><%= @user.name %>のページ</h1>
+<h2><%= @user.name %>のページ</h2>
 
+<p>名前: <%= @user.name %></p>
 <p>メールアドレス: <%= @user.email %></p>
+
+<table class="table">
+  <tr>
+    <th><%= t("activerecord.attributes.task.list") %></th>
+    <th><%= t("activerecord.attributes.task.detail") %></th>
+    <th><%= t("activerecord.attributes.task.deadline") %></th>
+    <th><%= t("activerecord.attributes.task.status") %></th>
+    <th><%= t("activerecord.attributes.task.priority") %></th>
+  </tr>
+
+  <% @tasks.each do |task|%>
+    <tr>
+    <td><%= task.list %></td>
+    <td><%= task.detail %></td>
+    <td><%= task.deadline %></td>
+    <td><%= task.status %></td>
+    <td><%= task.priority %></td>
+    </tr>
+  <% end %>
+</table>
+
+<%= link_to "一覧へ戻る", tasks_path %>
