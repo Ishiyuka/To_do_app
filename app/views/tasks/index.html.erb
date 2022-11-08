@@ -8,11 +8,12 @@
       <%= form.label :status, t('.status') %>
       <%= form.select :status, Task.statuses.keys.to_a, {include_blank: true} %>
       <%= form.label :label, t('.label') %>
-      <%= form.select("label_id", Label.pluck(:label_name, :id), { include_blank: true }) %>
-      <%= form.submit "検索" %>
+      <%= form.select :label_id, Label.pluck(:label_name, :id), { include_blank: true } %>
+      <%= form.submit "検索", name: nil %>
   </div>
 <% end %>
 
+<br>
 <table>
 <tr>
 <th><%= t('.user_name') %></th>
@@ -34,15 +35,15 @@
     <td><%= task.deadline %></td>
     <td><%= task.status %></td>
     <td><%= task.priority %></td>
-    <td class = "btn">
-      <label class = "btn btn-info btn-sm"><%= link_to t('.to_show'), task_path(task.id) %></label>
-      <label class = "btn btn-success btn-sm"><%= link_to t('.to_edit'), edit_task_path(task.id) %></label>
-      <label class = "btn btn-danger btn-sm"><%= link_to t('.to_destroy'), task_path(task.id), method: :delete %></label>
-    </td>
     <td>
       <% task.labels.each do |label| %>
         <%= label.label_name %>
       <% end %>
+    </td>
+    <td class = "btn">
+      <label class = "btn btn-info btn-sm"><%= link_to t('.to_show'), task_path(task.id) %></label>
+      <label class = "btn btn-success btn-sm"><%= link_to t('.to_edit'), edit_task_path(task.id) %></label>
+      <label class = "btn btn-danger btn-sm"><%= link_to t('.to_destroy'), task_path(task.id), method: :delete %></label>
     </td>
   </tr>
 <% end %>

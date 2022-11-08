@@ -19,7 +19,7 @@ class TasksController < ApplicationController
       elsif status.present?
         @tasks = @tasks.page(params[:page]).search_status(status)
       elsif label.present?
-        @tasks = @tasks.joins(:labels).where(labels: { id: params[:label_id] })
+        @tasks = @tasks.search_label(label)
       end
     elsif params[:sort_deadline]
       @tasks = @tasks.page(params[:page]).deadline_list
