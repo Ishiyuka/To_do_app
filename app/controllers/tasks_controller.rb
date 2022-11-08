@@ -22,7 +22,7 @@ class TasksController < ApplicationController
       @tasks = @tasks.page(params[:page]).deadline_list
     elsif params[:sort_priority]
       @tasks = @tasks.page(params[:page]).priority_list
-    else params[:sort_created_at]
+    else
       @tasks = @tasks.page(params[:page]).created_list
     end
   end

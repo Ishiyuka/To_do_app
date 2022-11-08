@@ -26,6 +26,10 @@ ja:
     form:
       count: "件のエラーがあります。"
       to_index: "タスク一覧へ"
+  sessions:
+    new:
+      email: "メールアドレス"
+      password: "パスワード"
   views:
     pagination:
       first: "&laquo; 最初"

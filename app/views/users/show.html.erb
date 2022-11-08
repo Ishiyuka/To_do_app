@@ -24,3 +24,8 @@
 </table>
 
 <%= link_to "一覧へ戻る", tasks_path %>
+<% if @user.admin? %>
+  <%= link_to 'ユーザー一覧', admin_users_path, class:"nav-link" %>
+<% else %>
+  <%= link_to 'ユーザー一覧', flash[:notice] = "アクセスできません", class:"nav-link" %>
+<% end %>

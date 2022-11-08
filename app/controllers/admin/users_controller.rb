@@ -5,6 +5,7 @@ class Admin::UsersController < ApplicationController
   skip_before_action :no_access_to_others, only: %I[index new create show edit update destroy]
   skip_before_action :if_not_admin, only: %I[index new create show edit update destroy]
 
+
   def index
     @users = User.all
   end

@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
   before_action :already_logged_in
   before_action :no_access_to_others
   before_action :if_not_admin
+
   # before_action :basic_auth
 
   # private
@@ -42,7 +43,10 @@ class ApplicationController < ActionController::Base
   end
 
   def  if_not_admin
-    redirect_to tasks_path unless current_user.admin?
+    unless current_user.admin?
     flash[:notice] = "管理権限がありません"
+    redirect_to tasks_path
+    end
   end
+
 end
