@@ -1,8 +1,13 @@
 class TasksController < ApplicationController
   before_action :set_task, only: %I[ show edit update destroy]
+  skip_before_action :login_required, only: %I[ new create]
+  skip_before_action :already_logged_in, only: %I[ index new create update show edit destroy ]
+  skip_before_action :no_access_to_others, only: %I[ index new create update show edit destroy]
+  skip_before_action :if_not_admin, only: %I[ index new create update show edit destroy]
+
 
   def index
-    @tasks = Task.all.page(params[:page])
+    @tasks = current_user.tasks.page(params[:page])
     if params[:task_search].present?
       list = params[:task_search][:list]
       status = params[:task_search][:status]
@@ -17,7 +22,7 @@ class TasksController < ApplicationController
       @tasks = @tasks.page(params[:page]).deadline_list
     elsif params[:sort_priority]
       @tasks = @tasks.page(params[:page]).priority_list
-    else params[:sort_created_at]
+    else
       @tasks = @tasks.page(params[:page]).created_list
     end
   end
@@ -31,8 +36,7 @@ class TasksController < ApplicationController
   end
 
   def create
-    # @task = current_user.tasks.build(task_params)
-    @task = Task.create(task_params)
+    @task = current_user.tasks.build(task_params)
     if @task.save
       flash[:notice] = "新規作成しました"
       redirect_to tasks_path
@@ -68,6 +72,7 @@ class TasksController < ApplicationController
   end
 
   def set_task
-    @task = Task.find(params[:id])
+    @task = current_user.tasks.find(params[:id])
   end
+
 end

@@ -1,26 +1,37 @@
 <h1><%= t('tasks.show.title') %> </h1>
 
 <p>
-  <%= t('tasks.index.list') %>
+  <strong><%= 'ユーザー' %></strong>
+  <br>
+  <%= @task.user.name %>
+</p>
+
+<p>
+  <strong><%= t('tasks.index.list') %></strong>
+<br>
   <%= @task.list %>
 </p>
 <p>
-  <%= t('tasks.index.detail') %>
+  <strong><%= t('tasks.index.detail') %></strong>
+  <br>
   <%= @task.detail %>
 </p>
 
 <p>
-  <%= t('tasks.index.deadline') %>
+  <strong><%= t('tasks.index.deadline') %></strong>
+  <br>
   <%= @task.deadline %>
 </p>
 
 <p>
-  <%= t('tasks.index.status') %>
+  <strong><%= t('tasks.index.status') %></strong>
+  <br>
   <%= @task.status %>
 </p>
 
 <p>
-  <%= t('tasks.index.priority') %>
+  <strong><%= t('tasks.index.priority') %></strong>
+  <br>
   <%= @task.priority %>
 </p>
 
