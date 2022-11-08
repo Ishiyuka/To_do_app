@@ -11,7 +11,7 @@
     </div>
   <% end %>
 
-  <div class="task_list">
+  <div class="field">
     <%= form.label :list%><br>
     <%= form.text_field :list %>
   </div>
@@ -25,14 +25,18 @@
     <%= form.date_field :deadline %>
   </div>
 
-    <div class="field">
+  <div class="field">
     <%= form.label :status %>
     <%= form.select :status, Task.statuses.keys.to_a,include_blank: "選択して下さい"  %>
   </div>
 
-    <div class="field">
+  <div class="field">
     <%= form.label :priority %>
     <%= form.select :priority, Task.priorities.keys.to_a,include_blank: "選択して下さい"  %>
+  </div>
+
+  <div class="field">
+    <%= form.collection_check_boxes(:label_ids, Label.all, :id, :label_name) %>
   </div>
 
   <div class="actions">

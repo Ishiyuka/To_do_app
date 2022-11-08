@@ -36,6 +36,11 @@
       <label class = "btn btn-success btn-sm"><%= link_to t('.to_edit'), edit_task_path(task.id) %></label>
       <label class = "btn btn-danger btn-sm"><%= link_to t('.to_destroy'), task_path(task.id), method: :delete %></label>
     </td>
+    <td>
+      <% task.labels.each do |label| %>
+        <%= label.label_name %>
+      <% end %>
+    </td>
   </tr>
 <% end %>
 </table>
