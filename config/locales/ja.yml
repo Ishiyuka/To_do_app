@@ -15,6 +15,7 @@ ja:
       status: "ステータス"
       priority: "優先順位"
       user_name: "ユーザー"
+      label: "ラベル"
     new:
       title: "タスク新規作成"
     show:

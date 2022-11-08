@@ -7,6 +7,8 @@
       <%= form.text_field :list, placeholder:"タスク検索"%><br>
       <%= form.label :status, t('.status') %>
       <%= form.select :status, Task.statuses.keys.to_a, {include_blank: true} %>
+      <%= form.label :label, t('.label') %>
+      <%= form.select("label_id", Label.pluck(:label_name, :id), { include_blank: true }) %>
       <%= form.submit "検索" %>
   </div>
 <% end %>
@@ -20,6 +22,7 @@
 <th><%= link_to t('.deadline'), tasks_path(sort_deadline: "true") %></th>
 <th><%= t('.status')%></th>
 <th><%= link_to t('.priority'), tasks_path(sort_priority: "true") %></th>
+<th><%= t('.label')%></th>
 </tr>
 
 <% @tasks.each do |task| %>

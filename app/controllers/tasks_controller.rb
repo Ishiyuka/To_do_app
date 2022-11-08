@@ -11,12 +11,15 @@ class TasksController < ApplicationController
     if params[:task_search].present?
       list = params[:task_search][:list]
       status = params[:task_search][:status]
+      label = params[:task_search][:label_id]
       if (list && status).present?
         @tasks = @tasks.page(params[:page]).search_list_status(list, status)
       elsif list.present?
         @tasks = @tasks.page(params[:page]).search_list(list)
       elsif status.present?
         @tasks = @tasks.page(params[:page]).search_status(status)
+      elsif label.present?
+        @tasks = @tasks.joins(:labels).where(labels: { id: params[:label_id] })
       end
     elsif params[:sort_deadline]
       @tasks = @tasks.page(params[:page]).deadline_list
@@ -68,7 +71,7 @@ class TasksController < ApplicationController
   private
 
   def task_params
-    params.require(:task).permit(:list, :detail, :status, :priority, :deadline, { label_ids: [] })
+    params.require(:task).permit(:list, :detail, :status, :priority, :deadline, :user_id, { label_ids: [] })
   end
 
   def set_task
