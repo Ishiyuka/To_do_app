@@ -59,8 +59,7 @@
 <br>`$ git push heroku step2:master`
 1. "The Ruby version you are trying to install does not exist on this stack."というエラーが出たら、
 Heroku stackのバージョンを下げる。
-<br>
-`$ heroku stack:set heroku-20`
+<br>`$ heroku stack:set heroku-20`
 1. Heroku stackのバージョンを確認。
 <br>`$ heroku stack`
 1. heroku-20と確認できたら再度、Herokuにデプロイを実行。
