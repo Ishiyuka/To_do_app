@@ -13,3 +13,30 @@ User.create!(
   password: 'password',
   password_confirmation: 'password',
 )
+
+10.times do |i|
+  User.create!(
+    name: "user_name#{i+1}",
+    email: "user#{i+1}@example.com",
+    admin: false,
+    password: "password#{i+1}",
+    password_confirmation: "password#{i+1}",
+  )
+end
+
+10.times do |i|
+  Label.create!(
+    label_name: "label#{i+1}",
+  )
+end
+
+10.times do |i|
+  Task.create!(
+    list: "task#{i+1}",
+    detail: "task_detail#{i+1}",
+    deadline: "2022-11-10",
+    status: "未着手",
+    priority: "低",
+    user_id: 5,
+  )
+end

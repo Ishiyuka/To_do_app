@@ -7,10 +7,13 @@
       <%= form.text_field :list, placeholder:"タスク検索"%><br>
       <%= form.label :status, t('.status') %>
       <%= form.select :status, Task.statuses.keys.to_a, {include_blank: true} %>
-      <%= form.submit "検索" %>
+      <%= form.label :label, t('.label') %>
+      <%= form.select :label_id, Label.pluck(:label_name, :id), { include_blank: true } %>
+      <%= form.submit "検索", name: nil %>
   </div>
 <% end %>
 
+<br>
 <table>
 <tr>
 <th><%= t('.user_name') %></th>
@@ -20,6 +23,7 @@
 <th><%= link_to t('.deadline'), tasks_path(sort_deadline: "true") %></th>
 <th><%= t('.status')%></th>
 <th><%= link_to t('.priority'), tasks_path(sort_priority: "true") %></th>
+<th><%= t('.label')%></th>
 </tr>
 
 <% @tasks.each do |task| %>
@@ -31,6 +35,11 @@
     <td><%= task.deadline %></td>
     <td><%= task.status %></td>
     <td><%= task.priority %></td>
+    <td>
+      <% task.labels.each do |label| %>
+        <%= label.label_name %>
+      <% end %>
+    </td>
     <td class = "btn">
       <label class = "btn btn-info btn-sm"><%= link_to t('.to_show'), task_path(task.id) %></label>
       <label class = "btn btn-success btn-sm"><%= link_to t('.to_edit'), edit_task_path(task.id) %></label>

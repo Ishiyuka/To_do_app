@@ -7,23 +7,26 @@ class TasksController < ApplicationController
 
 
   def index
-    @tasks = current_user.tasks.page(params[:page])
+    @tasks = current_user.tasks.page(params[:page]).per(2)
     if params[:task_search].present?
       list = params[:task_search][:list]
       status = params[:task_search][:status]
+      label = params[:task_search][:label_id]
       if (list && status).present?
-        @tasks = @tasks.page(params[:page]).search_list_status(list, status)
+        @tasks = @tasks.search_list_status(list, status)
       elsif list.present?
-        @tasks = @tasks.page(params[:page]).search_list(list)
+        @tasks = @tasks.search_list(list)
       elsif status.present?
-        @tasks = @tasks.page(params[:page]).search_status(status)
+        @tasks = @tasks.search_status(status)
+      elsif label.present?
+        @tasks = @tasks.search_label(label)
       end
     elsif params[:sort_deadline]
-      @tasks = @tasks.page(params[:page]).deadline_list
+      @tasks = @tasks.deadline_list
     elsif params[:sort_priority]
-      @tasks = @tasks.page(params[:page]).priority_list
+      @tasks = @tasks.priority_list
     else
-      @tasks = @tasks.page(params[:page]).created_list
+      @tasks = @tasks.created_list
     end
   end
 
@@ -68,7 +71,7 @@ class TasksController < ApplicationController
   private
 
   def task_params
-    params.require(:task).permit(:list, :detail, :status, :priority, :deadline)
+    params.require(:task).permit(:list, :detail, :status, :priority, :deadline, :user_id, { label_ids: [] })
   end
 
   def set_task

@@ -8,6 +8,10 @@ FactoryBot.define do
     deadline {"2022-11-01"}
     status {'未着手'}
     priority {"高"}
+
+    after(:create) do |task|
+      create_list(:labeling, 0, task: task, label: build(:label))
+    end
   end
 
   factory :second_task, class: Task do
@@ -16,6 +20,9 @@ FactoryBot.define do
     deadline {"2022-11-11"}
     status {"着手中"}
     priority {"中"}
+    after(:create) do |task|
+      create_list(:labeling, 0, task: task, label: build(:second_label))
+    end
   end
 
   factory :third_task, class: Task do
@@ -25,5 +32,4 @@ FactoryBot.define do
     status {"完了"}
     priority {"低"}
   end
-
 end
